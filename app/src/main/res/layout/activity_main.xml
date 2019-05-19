@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3788232558823244/7616183954"></com.google.android.gms.ads.AdView>
+
+   <android.support.design.widget.AppBarLayout
+       android:layout_width="match_parent"
+       android:layout_height="120dp"
+       android:gravity="center"
+       android:elevation="0dp"
+
+       android:id="@+id/appbarid">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/forest_100px"
+        android:contentDescription="@string/todo" />
+   </android.support.design.widget.AppBarLayout>
+    <android.support.design.widget.TabLayout
+        android:layout_below="@id/appbarid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"
+        android:id="@+id/tablayout_id"
+        app:tabTextColor="@color/Text"
+        app:tabIndicatorColor="@color/Appbar"
+        android:background="@color/colorPrimary"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/tablayout_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpager_id"
+        android:verticalScrollbarPosition="right"
+        android:layout_above="@id/bottom">
+    </android.support.v4.view.ViewPager>
+
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:weightSum="3"
+
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/reset"
+                android:layout_weight="1"
+                android:text="@string/resetuj"
+                android:textColor="@color/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/synchronize"
+
+                style="@style/Widget.AppCompat.Button.Borderless"
+                 />
+            <Button
+                android:id="@+id/save"
+                android:layout_weight="1"
+                android:text="@string/zapisz"
+                android:textColor="@color/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/save"
+
+                style="@style/Widget.AppCompat.Button.Borderless"
+                />
+            <Button
+                android:id="@+id/send"
+                android:layout_weight="1"
+                android:text="@string/wyslij"
+                android:textColor="@color/Text"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/send"
+                android:layout_height="wrap_content"
+
+                style="@style/Widget.AppCompat.Button.Borderless"
+                />
+
+        </LinearLayout>
+
+    <!--<android.support.design.widget.BottomNavigationView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bottom"-->
+        <!--app:menu="@menu/bottom_nav"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_alignParentBottom="true"-->
+
+        <!--/>-->
+
+
+
+</RelativeLayout>
+
+    <!--I will add my answer since I don't use any of the other answers provided.-->
+
+    <!--With the Support Library v7, all the styles are actually already defined and ready to use, for the standard buttons, all of these styles are available:-->
+
+    <!--style="@style/Widget.AppCompat.Button"-->
+    <!--style="@style/Widget.AppCompat.Button.Colored"-->
+    <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+    <!--style="@style/Widget.AppCompat.Button.Borderless.Colored"-->
