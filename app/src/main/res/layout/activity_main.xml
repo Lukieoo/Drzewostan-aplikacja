@@ -67,18 +67,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/synchronize"
-
+                android:textSize="10sp"
                 style="@style/Widget.AppCompat.Button.Borderless"
                  />
             <Button
                 android:id="@+id/save"
                 android:layout_weight="1"
-                android:text="@string/zapisz"
+                android:drawableStart="@drawable/gears"
                 android:textColor="@color/Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/save"
-
+                android:text="Ustawienia"
+                android:textSize="10sp"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 />
             <Button
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:drawableStart="@drawable/send"
                 android:layout_height="wrap_content"
-
+                android:textSize="10sp"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 />
 

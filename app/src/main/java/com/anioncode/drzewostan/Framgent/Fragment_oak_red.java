@@ -9,48 +9,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.anioncode.drzewostan.Adapters.MyAdapter;
+import com.anioncode.drzewostan.Adapters.UniversalAdapter;
 import com.anioncode.drzewostan.Model.Trees;
 import com.anioncode.drzewostan.R;
-import com.anioncode.drzewostan.SQLite.DatabaseHelper;
+import com.anioncode.drzewostan.SQLite.DatabaseUniversal;
 
 import java.util.ArrayList;
 
-public class Fragment_pine extends Fragment {
+public class Fragment_oak_red extends Fragment {
 
     View view;
 
-//    private ListView lv;
-//    private CustomeAdapter customeAdapter;
-//    public ArrayList<EditTrees> editModelArrayList;
-
     ListView li;
     ArrayList<Trees> arrayList;
-    MyAdapter myAdapter;
-    DatabaseHelper databaseHelper;
+    UniversalAdapter myAdapter;
+    DatabaseUniversal databaseHelper;
 
-    public Fragment_pine() {
+    public Fragment_oak_red() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.universal_layout, container, false);
+        li = (ListView) view.findViewById(R.id.listView);
 
-        view=inflater.inflate(R.layout.pine_fragment,container,false);
-
-        li=(ListView)view.findViewById(R.id.listView);
-
-        databaseHelper = new DatabaseHelper(view.getContext());
-
-
-        arrayList =new ArrayList<>();
-        arrayList=databaseHelper.getAllData();
-        myAdapter=new MyAdapter(view.getContext(),arrayList);
+        databaseHelper = new DatabaseUniversal(view.getContext(), "OAK_RED");
+        arrayList = new ArrayList<>();
+        arrayList = databaseHelper.getAllData();
+        myAdapter = new UniversalAdapter(view.getContext(), arrayList, "OAK_RED");
         li.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
 
-        return  view;
+        return view;
     }
 
 

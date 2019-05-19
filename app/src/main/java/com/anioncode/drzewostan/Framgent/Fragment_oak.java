@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.anioncode.drzewostan.Adapters.MyAdapter;
 import com.anioncode.drzewostan.Adapters.OakMyAdapter;
 import com.anioncode.drzewostan.Model.Trees;
 import com.anioncode.drzewostan.R;
@@ -47,20 +46,16 @@ public class Fragment_oak extends Fragment {
         myAdapter=new OakMyAdapter(view.getContext(),arrayList);
         li.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
-        try{
-            populateList();
-        }catch (Exception e){
 
-        }
         return  view;
     }
 
-    private void populateList(){
-
-        double tmp;
-        for(int i = 7; i < 87; i+=2){
-            tmp=i+1.9;
-            databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
-        }
-    }
+//    private void populateList(){
+//
+//        double tmp;
+//        for(int i = 7; i < 87; i+=2){
+//            tmp=i+1.9;
+//            databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
+//        }
+//    }
 }

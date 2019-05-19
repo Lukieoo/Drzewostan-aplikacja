@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.anioncode.drzewostan.SQLite.DatabaseAlder;
 import com.anioncode.drzewostan.SQLite.DatabaseHelper;
 import com.anioncode.drzewostan.SQLite.DatabaseTablenameHelper;
+import com.anioncode.drzewostan.SQLite.DatabaseUniversal;
 
 public class SplashScreen extends AppCompatActivity {
 ImageView imageView;
@@ -57,6 +57,11 @@ ImageView imageView;
             populate1();
             populate2();
             populate3();
+            populate4();
+            populate5();
+            populate6();
+            populate7();
+            populate8();
 
 
             new Handler().postDelayed(new Runnable() {
@@ -98,6 +103,7 @@ ImageView imageView;
             databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
         }
     }
+
     private void populate3(){
 
         double tmp;
@@ -105,6 +111,56 @@ ImageView imageView;
         for(int i = 7; i < 87; i+=2){
             tmp=i+1.9;
             databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
+        }
+    }
+
+    private void populate4() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BIRCH");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+
+    private void populate5() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "OAK_RED");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+
+    private void populate6() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BIRDCHERRY");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+
+    private void populate7() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BEECH");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+
+    private void populate8() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "HORNBEAM");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
 }

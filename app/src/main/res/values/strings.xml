@@ -12,30 +12,25 @@
 
     <string name="____">+</string>
     <string name="forest">Forest</string>
-    <string name="b">B</string>
+    <string name="b">SPEC. B</string>
     <string name="plus">+</string>
-    <string name="plus">+</string>
+
     <string name="_1_wa">1 - WA</string>
-    <string name="plus">+</string>
-    <string name="_0">0</string>
-    <string name="minus">-</string>
-    <string name="a">A</string>
-    <string name="_0">0</string>
-    <string name="minus">-</string>
-    <string name="minus">-</string>
-    <string name="_0">0</string>
+
+
+    <string name="a">SPEC. A</string>
+
+
     <string name="_3_wc_wd_s2_s3_s4">3 - WC,WD,S2,S3,S4</string>
     <string name="_2_wb_s1">2 - WB,S1</string>
-    <string name="plus">+</string>
-    <string name="_0">0</string>
-    <string name="minus">-</string>
     <string name="minus">-</string>
     <string name="_0">0</string>
-    <string name="plus">+</string>
-    <string name="minus">-</string>
-    <string name="_0">0</string>
-    <string name="plus">+</string>
-    <string name="c_s">C/S</string>
+    <string name="c_s">SPEC. C/S</string>
+    <string name="aktualna_wersja_1_1">Aktualna wersja 1.1</string>
+    <string name="copyright_pawe_krzy_ciak">Copyright Paweł Krzyściak</string>
+    <string name="powi_ksz_obszar_roboczy">Powiększ obszar roboczy</string>
+    <string name="wprowadz_odzia">Wprowadz Odział</string>
+    <string name="wprowadz_odziax">Wprowadz odział</string>
 
     <string-array name="numbers">
         <item>0</item>
