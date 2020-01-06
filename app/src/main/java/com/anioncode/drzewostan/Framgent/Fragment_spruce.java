@@ -1,0 +1,49 @@
+package com.anioncode.drzewostan.Framgent;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.anioncode.drzewostan.Adapters.UniversalAdapter;
+import com.anioncode.drzewostan.Model.Trees;
+import com.anioncode.drzewostan.R;
+import com.anioncode.drzewostan.SQLite.DatabaseUniversal;
+
+import java.util.ArrayList;
+
+public class Fragment_spruce extends Fragment {
+
+    View view;
+
+    ListView li;
+    ArrayList<Trees> arrayList;
+    UniversalAdapter myAdapter;
+    DatabaseUniversal databaseHelper;
+
+    public Fragment_spruce() {
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.universal_layout, container, false);
+        li = (ListView) view.findViewById(R.id.listView);
+
+        databaseHelper = new DatabaseUniversal(view.getContext(), "SPRUCE");
+        arrayList = new ArrayList<>();
+        arrayList = databaseHelper.getAllData();
+        myAdapter = new UniversalAdapter(view.getContext(), arrayList, "SPRUCE");
+        li.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
+
+        return view;
+    }
+
+
+}

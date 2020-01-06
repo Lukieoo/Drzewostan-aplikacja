@@ -62,6 +62,9 @@ ImageView imageView;
             populate6();
             populate7();
             populate8();
+            populate9();
+            populate10();
+            populate11();
 
 
             new Handler().postDelayed(new Runnable() {
@@ -158,6 +161,33 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "HORNBEAM");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+    private void populate9() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "FIR");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+    private void populate10() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "LARCH");
+        for (int i = 7; i < 87; i += 2) {
+            tmp = i + 1.9;
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+    private void populate11() {
+
+        double tmp;
+        DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "SPRUCE");
         for (int i = 7; i < 87; i += 2) {
             tmp = i + 1.9;
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);

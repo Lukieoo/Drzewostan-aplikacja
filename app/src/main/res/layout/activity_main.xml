@@ -7,13 +7,19 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabsave"
+        android:elevation="5dp"
+        android:src="@drawable/save"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3788232558823244/7616183954"></com.google.android.gms.ads.AdView>
+        android:layout_above="@+id/bottom"
+        android:layout_alignEnd="@id/bottom"
+        android:foregroundGravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        />
 
    <android.support.design.widget.AppBarLayout
        android:layout_width="match_parent"
@@ -22,6 +28,14 @@
        android:elevation="0dp"
 
        android:id="@+id/appbarid">
+
+       <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+           android:id="@+id/adView"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           ads:adSize="BANNER"
+           ads:adUnitId="ca-app-pub-3788232558823244/7616183954"></com.google.android.gms.ads.AdView>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
