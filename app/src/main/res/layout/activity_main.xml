@@ -19,6 +19,7 @@
         android:foregroundGravity="center"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"
+
         />
 
    <android.support.design.widget.AppBarLayout
@@ -49,21 +50,28 @@
         android:layout_height="wrap_content"
         app:tabGravity="fill"
         app:tabMode="scrollable"
+        app:tabPaddingEnd="6dp"
+        app:tabPaddingStart="6dp"
         android:id="@+id/tablayout_id"
         app:tabTextColor="@color/Text"
+        app:tabRippleColor="@color/colorPrimaryDark"
         app:tabIndicatorColor="@color/Appbar"
-        android:background="@color/colorPrimary"/>
+        app:tabMinWidth="100dp"
 
+        style="@style/Base.Widget.Design.TabLayout"
+       />
+<!--    android:background="@color/colorPrimary"-->
     <android.support.v4.view.ViewPager
-        android:layout_below="@id/tablayout_id"
+        android:id="@+id/viewpager_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewpager_id"
-        android:verticalScrollbarPosition="right"
-        android:layout_above="@id/bottom">
-    </android.support.v4.view.ViewPager>
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/tablayout_id"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:verticalScrollbarPosition="right"></android.support.v4.view.ViewPager>
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/bottom"
             android:background="@color/colorPrimary"
             android:layout_alignParentBottom="true"
@@ -87,7 +95,7 @@
             <Button
                 android:id="@+id/save"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/gears"
+                android:drawableStart="@drawable/settings"
                 android:textColor="@color/Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,10 +106,10 @@
             <Button
                 android:id="@+id/send"
                 android:layout_weight="1"
-                android:text="@string/wyslij"
+                android:text="@string/Zapisane"
                 android:textColor="@color/Text"
                 android:layout_width="wrap_content"
-                android:drawableStart="@drawable/send"
+                android:drawableStart="@drawable/opened"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 style="@style/Widget.AppCompat.Button.Borderless"

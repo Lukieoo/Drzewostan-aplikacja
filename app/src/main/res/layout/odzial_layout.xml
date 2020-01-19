@@ -6,6 +6,15 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/forest_100px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
     <EditText
         android:id="@+id/editext"
         android:layout_width="match_parent"

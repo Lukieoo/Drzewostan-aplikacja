@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="2dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/folders" />
+
+        <TextView
+            style="@android:style/TextAppearance.Material.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_toRightOf="@+id/image"
+            android:text="Twoje zapisane pliki" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text"
+        android:background="@android:color/darker_gray"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="4dp"
+        android:id="@+id/filesRec"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

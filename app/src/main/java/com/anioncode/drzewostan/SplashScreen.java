@@ -90,8 +90,16 @@ ImageView imageView;
 
         double tmp;
         DatabaseHelper databaseHelper=new DatabaseHelper(this);
-        for(int i = 7; i < 87; i+=2){
-            tmp=i+1.9;
+        for(int i = 7; i <= 87; i+=2){
+
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
+
 
             databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
         }
@@ -100,8 +108,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseTablenameHelper databaseHelper=new DatabaseTablenameHelper(this);
-        for(int i = 7; i < 87; i+=2){
-            tmp=i+1.9;
+        for(int i = 7; i <= 87; i+=2){
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
 
             databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
         }
@@ -111,8 +125,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseAlder databaseHelper=new DatabaseAlder(this);
-        for(int i = 7; i < 87; i+=2){
-            tmp=i+1.9;
+        for(int i = 7; i <= 87; i+=2){
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
         }
     }
@@ -121,8 +141,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BIRCH");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -131,8 +157,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "OAK_RED");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -141,8 +173,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BIRDCHERRY");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -151,8 +189,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BEECH");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -161,8 +205,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "HORNBEAM");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -170,8 +220,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "FIR");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -179,8 +235,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "LARCH");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
@@ -188,8 +250,14 @@ ImageView imageView;
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "SPRUCE");
-        for (int i = 7; i < 87; i += 2) {
-            tmp = i + 1.9;
+        for (int i = 7; i <= 87; i += 2) {
+            if(i<27)tmp=i+1.9;
+            else if(i==27)tmp=i+3.9;
+            else{
+                i+=2;
+                tmp=i+3.9;
+
+            }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
