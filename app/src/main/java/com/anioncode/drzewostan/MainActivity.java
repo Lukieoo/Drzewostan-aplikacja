@@ -9,8 +9,6 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -53,7 +51,6 @@ import com.anioncode.drzewostan.SQLite.DatabaseUniversal;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -63,22 +60,10 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.html.WebColors;
 import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPRow;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -87,8 +72,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -159,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 try {
-                                    saveExcelFile(getApplicationContext(), String.valueOf(editText.getText()).trim() +"_odzial_"+currentTimeMillis()+ ".pdf",String.valueOf(editText.getText()).trim());
+                                    saveExcelFile(getApplicationContext(), String.valueOf(editText.getText()).trim() + "_odzial_" + currentTimeMillis() + ".pdf", String.valueOf(editText.getText()).trim());
                                     Toast.makeText(getApplicationContext(), "Zapisano", Toast.LENGTH_LONG).show();
                                 } catch (Exception e) {
                                     Toast.makeText(getApplicationContext(), "Wystąpił błąd", Toast.LENGTH_LONG).show();
@@ -478,24 +461,41 @@ public class MainActivity extends AppCompatActivity {
 
                 LayoutInflater inflater2 = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
                 View view1 = inflater2.inflate(R.layout.dialog_file_explorer, null);
-                RecyclerView  recyclerView=view1.findViewById(R.id.filesRec);
+                RecyclerView recyclerView = view1.findViewById(R.id.filesRec);
                 List<String> folderList = new ArrayList<>();
 
 
-                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS+"/Lasy/").toString();
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toURI());
+                if(file.exists()){
+                    //Do something
+                    //System.out.println("EXIST");
+                }
+                else{
+                    //Nothing
+                    file.mkdir();
+                }
+
+                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toString();
                 Log.d("Files", "Path: " + path);
                 File directory = new File(path);
                 File[] files = directory.listFiles();
-                Log.d("Files", "Size: "+ files.length);
-                for (int i = 0; i < files.length; i++)
-                {
-                    folderList.add( files[i].getName()) ;
+
+                Log.d("Files", "Size: " + files.length);
+                for (int i = 0; i < files.length; i++) {
+                    folderList.add(files[i].getName());
                     Log.d("Files", "FileName:" + files[i].getName());
 
                 }
 
 
-                FolderAdapter mAdapter = new FolderAdapter(folderList);
+                FolderAdapter mAdapter = new FolderAdapter(folderList, new FolderAdapter.PressPDF() {
+                    @Override
+                    public void longClick(String filename) {
+                        Intent intent=new Intent(MainActivity.this,PdfViewer.class);
+                        intent.putExtra("filename",filename);
+                        startActivity(intent);
+                    }
+                });
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -510,7 +510,6 @@ public class MainActivity extends AppCompatActivity {
                 });
                 AlertDialog alert11 = builder1.create();
                 alert11.show();
-
 
 
             }
@@ -529,20 +528,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean saveExcelFile(Context context, String fileName,String odzial) throws DocumentException, IOException {
+    private boolean saveExcelFile(Context context, String fileName, String odzial) throws DocumentException, IOException {
 
         ///PDF
         Document document = new Document();
 
         try {
             PdfWriter.getInstance(document,
-                    new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS+"/Lasy/"+fileName).toString()));
+                    new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + fileName).toString()));
 
             document.open();
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
-            PdfPTable table = new PdfPTable(8); // 3 columns.
+        PdfPTable table = new PdfPTable(8); // 3 columns.
 
         /// PDF ~~
 
@@ -609,7 +608,7 @@ public class MainActivity extends AppCompatActivity {
 //        c.setCellStyle(cs);
 
         //PDF!!
-         pdfCreator(document,odzial,"Sosna", table);
+        pdfCreator(document, odzial, "Sosna", table);
         //PDF!!
 
         ArrayList<String> strings = new ArrayList<>();
@@ -683,11 +682,10 @@ public class MainActivity extends AppCompatActivity {
 
             ixx++;
             ///PDF
-            pdfdata(document,table,srednica,klasa_1,klasa_2,klasa_3,klasa_a,klasa_b,klasa_c,wysokosc);
+            pdfdata(document, table, srednica, klasa_1, klasa_2, klasa_3, klasa_a, klasa_b, klasa_c, wysokosc);
 
             ///PDF~~
         }
-
 
 
         Cursor datax = databaseTablenameHelper.AllData();
@@ -699,7 +697,7 @@ public class MainActivity extends AppCompatActivity {
         }
         table.flushContent();
         document.newPage();
-        pdfCreator(document,odzial,"Dąb", table);
+        pdfCreator(document, odzial, "Dąb", table);
         //
         while (datax.moveToNext()) {
             //get the value from the database in column 1
@@ -753,7 +751,7 @@ public class MainActivity extends AppCompatActivity {
             ixx++;
 
             //pdf
-            pdfdata(document,table,srednica,klasa_1,klasa_2,klasa_3,klasa_a,klasa_b,klasa_c,wysokosc);
+            pdfdata(document, table, srednica, klasa_1, klasa_2, klasa_3, klasa_a, klasa_b, klasa_c, wysokosc);
             //
         }
         Cursor dataxx = databaseAlder.AllData();
@@ -766,7 +764,7 @@ public class MainActivity extends AppCompatActivity {
         }
         table.flushContent();
         document.newPage();
-        pdfCreator(document,odzial,"Olszyna", table);
+        pdfCreator(document, odzial, "Olszyna", table);
         //
         while (dataxx.moveToNext()) {
             //get the value from the database in column 1
@@ -810,7 +808,7 @@ public class MainActivity extends AppCompatActivity {
 //            c = row1.createCell(8);
 //            c.setCellValue(wysokosc);
             ixx++;
-            pdfdata(document,table,srednica,klasa_1,klasa_2,klasa_3,klasa_a,klasa_b,klasa_c,wysokosc);
+            pdfdata(document, table, srednica, klasa_1, klasa_2, klasa_3, klasa_a, klasa_b, klasa_c, wysokosc);
         }
         ///pdf
         try {
@@ -826,42 +824,42 @@ public class MainActivity extends AppCompatActivity {
 
             Cursor datax1 = null;
             if (a.equals("Brzoza")) {
-                pdfCreator(document,odzial,"Brzoza", table);
+                pdfCreator(document, odzial, "Brzoza", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "BIRCH");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Dąb czerwony")) {
-                pdfCreator(document,odzial,"Dąb czerwony", table);
+                pdfCreator(document, odzial, "Dąb czerwony", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "OAK_RED");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Czeremch")) {
-                pdfCreator(document,odzial,"Czeremch", table);
+                pdfCreator(document, odzial, "Czeremch", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "BIRDCHERRY");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Buk")) {
-                pdfCreator(document,odzial,"Buk", table);
+                pdfCreator(document, odzial, "Buk", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "BEECH");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Grab")) {
-                pdfCreator(document,odzial,"Grab", table);
+                pdfCreator(document, odzial, "Grab", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "HORNBEAM");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Jodła")) {
-                pdfCreator(document,odzial,"Jodła", table);
+                pdfCreator(document, odzial, "Jodła", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "FIR");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Świerk")) {
-                pdfCreator(document,odzial,"Świerk", table);
+                pdfCreator(document, odzial, "Świerk", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "SPRUCE");
                 datax1 = Universal.AllData();
             }
             if (a.equals("Modrzew")) {
-                pdfCreator(document,odzial,"Modrzew", table);
+                pdfCreator(document, odzial, "Modrzew", table);
                 Universal = new DatabaseUniversal(getApplicationContext(), "LARCH");
                 datax1 = Universal.AllData();
             }
@@ -914,7 +912,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //                c = row1.createCell(8);
 //                c.setCellValue(wysokosc);
-                pdfdata(document,table,srednica,klasa_1,klasa_2,klasa_3,klasa_a,klasa_b,klasa_c,wysokosc);
+                pdfdata(document, table, srednica, klasa_1, klasa_2, klasa_3, klasa_a, klasa_b, klasa_c, wysokosc);
                 ixx++;
             }
             ///pdf
@@ -972,22 +970,22 @@ public class MainActivity extends AppCompatActivity {
         return success;
     }
 
-    private void pdfdata(Document document,PdfPTable table,String srednica ,int klasa_1,int klasa_2,int klasa_3,int klasa_a,int klasa_b,int klasa_c,int wysokosc ) {
-        Paragraph ph1=new Paragraph(srednica);
+    private void pdfdata(Document document, PdfPTable table, String srednica, int klasa_1, int klasa_2, int klasa_3, int klasa_a, int klasa_b, int klasa_c, int wysokosc) {
+        Paragraph ph1 = new Paragraph(srednica);
         ph1.setAlignment(Element.ALIGN_JUSTIFIED);
-        Paragraph ph2=new Paragraph(new Paragraph(String.valueOf(klasa_1) ));
+        Paragraph ph2 = new Paragraph(new Paragraph(String.valueOf(klasa_1)));
         ph2.setAlignment(Element.ALIGN_JUSTIFIED_ALL);
-        Paragraph ph3=new Paragraph(new Paragraph(String.valueOf(klasa_2)));
+        Paragraph ph3 = new Paragraph(new Paragraph(String.valueOf(klasa_2)));
         ph3.setAlignment(Element.ALIGN_MIDDLE);
-        Paragraph ph4=new Paragraph(new Paragraph(String.valueOf(klasa_3)));
+        Paragraph ph4 = new Paragraph(new Paragraph(String.valueOf(klasa_3)));
         ph4.setAlignment(Element.ALIGN_RIGHT);
-        Paragraph ph5=new Paragraph(new Paragraph(String.valueOf(klasa_a)));
+        Paragraph ph5 = new Paragraph(new Paragraph(String.valueOf(klasa_a)));
         ph5.setAlignment(Element.ALIGN_CENTER);
-        Paragraph ph6=new Paragraph(new Paragraph(String.valueOf(klasa_b)));
+        Paragraph ph6 = new Paragraph(new Paragraph(String.valueOf(klasa_b)));
         ph6.setAlignment(Element.ALIGN_CENTER);
-        Paragraph ph7=new Paragraph(new Paragraph(String.valueOf(klasa_c)));
+        Paragraph ph7 = new Paragraph(new Paragraph(String.valueOf(klasa_c)));
         ph7.setAlignment(Element.ALIGN_CENTER);
-        Paragraph ph8=new Paragraph(new Paragraph(String.valueOf(wysokosc)));
+        Paragraph ph8 = new Paragraph(new Paragraph(String.valueOf(wysokosc)));
         ph8.setAlignment(Element.ALIGN_CENTER);
 
         PdfPCell rowll1 = new PdfPCell(ph1);
@@ -1011,7 +1009,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void pdfCreator(Document document,String odzial,String nazwalasu,PdfPTable table) throws IOException, DocumentException {
+    private void pdfCreator(Document document, String odzial, String nazwalasu, PdfPTable table) throws IOException, DocumentException {
         ///PDF
         InputStream ims = getAssets().open("forest.png");
         Bitmap bmp = BitmapFactory.decodeStream(ims);
@@ -1021,48 +1019,48 @@ public class MainActivity extends AppCompatActivity {
 
         image.setAbsolutePosition(500f, 50f);
         document.add(image);
-        BaseFont urName = BaseFont.createFont("assets/Exoplanetaria.ttf", BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+        BaseFont urName = BaseFont.createFont("assets/Exoplanetaria.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
         Font urFontName = new Font(urName, 12);
         Font urFontName2 = new Font(urName, 20);
         Font urFontNameinside = new Font(urName, 10);
 
 //        Font font1 = new Font(Font.FontFamily.HELVETICA  , 25, Font.BOLD);
-        Chunk chunk1 = new Chunk("Drzwostan (c) Paweł Krzyściak " ,urFontName);
+        Chunk chunk1 = new Chunk("Drzwostan (c) Paweł Krzyściak ", urFontName);
 
-        Chunk chunk2 = new Chunk(nazwalasu+ ", odział : "+odzial,urFontName2);
+        Chunk chunk2 = new Chunk(nazwalasu + ", odział : " + odzial, urFontName2);
 
         document.add(chunk1);
-        document.add( Chunk.NEWLINE );
+        document.add(Chunk.NEWLINE);
         Phrase phrase1 = new Phrase(40);
         document.add(phrase1);
         document.add(chunk2);
         Phrase phrase2 = new Phrase(30);
         document.add(phrase2);
-        document.add( Chunk.NEWLINE );
+        document.add(Chunk.NEWLINE);
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
 
-        document.add(new Chunk(dateFormat.format(date).toString(),urFontName));
+        document.add(new Chunk(dateFormat.format(date).toString(), urFontName));
         document.add(phrase2);
-        PdfPCell cell1 = new PdfPCell(new Paragraph("Średnica",urFontNameinside));
-        PdfPCell cell2 = new PdfPCell(new Paragraph("Klasa_1",urFontNameinside));
-        PdfPCell cell3 = new PdfPCell(new Paragraph("Klasa_2",urFontNameinside));
-        PdfPCell cell4 = new PdfPCell(new Paragraph("Klasa_3",urFontNameinside));
-        PdfPCell cell5 = new PdfPCell(new Paragraph("Klasa_a",urFontNameinside));
-        PdfPCell cell6 = new PdfPCell(new Paragraph("Klasa_b",urFontNameinside));
-        PdfPCell cell7 = new PdfPCell(new Paragraph("Klasa_c",urFontNameinside));
-        PdfPCell cell8 = new PdfPCell(new Paragraph("Wysokość",urFontNameinside));
+        PdfPCell cell1 = new PdfPCell(new Paragraph("Średnica", urFontNameinside));
+        PdfPCell cell2 = new PdfPCell(new Paragraph("Klasa_1", urFontNameinside));
+        PdfPCell cell3 = new PdfPCell(new Paragraph("Klasa_2", urFontNameinside));
+        PdfPCell cell4 = new PdfPCell(new Paragraph("Klasa_3", urFontNameinside));
+        PdfPCell cell5 = new PdfPCell(new Paragraph("Klasa_a", urFontNameinside));
+        PdfPCell cell6 = new PdfPCell(new Paragraph("Klasa_b", urFontNameinside));
+        PdfPCell cell7 = new PdfPCell(new Paragraph("Klasa_c", urFontNameinside));
+        PdfPCell cell8 = new PdfPCell(new Paragraph("Wysokość", urFontNameinside));
 
 
-        cell1.setBackgroundColor(new BaseColor(123,205,180));
-        cell2.setBackgroundColor(new BaseColor(123,205,180));
-        cell3.setBackgroundColor(new BaseColor(123,205,180));
-        cell4.setBackgroundColor(new BaseColor(123,205,180));
-        cell5.setBackgroundColor(new BaseColor(123,205,180));
-        cell6.setBackgroundColor(new BaseColor(123,205,180));
-        cell7.setBackgroundColor(new BaseColor(123,205,180));
-        cell8.setBackgroundColor(new BaseColor(123,205,180));
+        cell1.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell2.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell3.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell4.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell5.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell6.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell7.setBackgroundColor(new BaseColor(123, 205, 180));
+        cell8.setBackgroundColor(new BaseColor(123, 205, 180));
 
         table.addCell(cell1);
         table.addCell(cell2);
