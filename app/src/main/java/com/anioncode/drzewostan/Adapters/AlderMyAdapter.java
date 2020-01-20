@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anioncode.drzewostan.SQLite.DatabaseAlder;
-import com.anioncode.drzewostan.SQLite.DatabaseTablenameHelper;
 import com.anioncode.drzewostan.Model.Trees;
 import com.anioncode.drzewostan.R;
 

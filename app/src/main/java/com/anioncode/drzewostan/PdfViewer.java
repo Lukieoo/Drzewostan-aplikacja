@@ -2,23 +2,18 @@ package com.anioncode.drzewostan;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 
 public class PdfViewer extends AppCompatActivity {
     FloatingActionButton back;
@@ -44,16 +39,16 @@ public class PdfViewer extends AppCompatActivity {
         send.setOnClickListener(v -> {
 
            // File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + filename).toString());
-            File file = new File((Environment.getExternalStorageDirectory() + "/Lasy/" + filename).toString());
+           // File file = new File((Environment.getExternalStorageDirectory() + "/Lasy/" + filename).toString());
 
 
             Intent intentx = new Intent(Intent.ACTION_SEND);
             intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + Environment.getExternalStorageDirectory() + "/Lasy/" + filename));
             intentx.setType("aplication/pdf");
             intentx.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(Intent.createChooser(intentx, "Share sound"));
-            Intent sendIntent = new Intent(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello!");
+            startActivity(Intent.createChooser(intentx, "Share PDF"));
+           // Intent sendIntent = new Intent(Intent.ACTION_SEND);
+//            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello!");
 
 //// (Optional) Here we're setting the title of the content
 //         //   sendIntent.putExtra(Intent.EXTRA_STREAM, "fille://"+Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + filename).toString());

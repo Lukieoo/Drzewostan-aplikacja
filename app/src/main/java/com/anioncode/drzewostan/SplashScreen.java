@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anioncode.drzewostan.SQLite.DatabaseAlder;
 import com.anioncode.drzewostan.SQLite.DatabaseHelper;
@@ -16,8 +17,7 @@ import com.anioncode.drzewostan.SQLite.DatabaseTablenameHelper;
 import com.anioncode.drzewostan.SQLite.DatabaseUniversal;
 
 public class SplashScreen extends AppCompatActivity {
-ImageView imageView;
-
+    ImageView imageView;
     private SharedPreferences preferences;
 
     @Override
@@ -29,6 +29,7 @@ ImageView imageView;
 
         SharedPreferences.Editor preferencesEditor = preferences.edit();
 
+        //Toast.makeText(this,"OKi",Toast.LENGTH_LONG).show();
 
        // preferencesEditor.putString("0","drugi");
       //  preferencesEditor.commit();
@@ -77,7 +78,7 @@ ImageView imageView;
      },1000);
 
         }else {
-           // Toast.makeText(this,"ELSE",Toast.LENGTH_LONG).show();
+
             Intent intent= new Intent(SplashScreen.this,MainActivity.class);
             startActivity(intent);
             finish();

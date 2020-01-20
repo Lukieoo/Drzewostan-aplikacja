@@ -32,7 +32,7 @@
         android:layout_below="@id/text"
         android:background="@android:color/darker_gray"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:padding="4dp"
         android:id="@+id/filesRec"
         android:layout_marginTop="10dp"
