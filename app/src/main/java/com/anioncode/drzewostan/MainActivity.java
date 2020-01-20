@@ -465,7 +465,8 @@ public class MainActivity extends AppCompatActivity {
                 List<String> folderList = new ArrayList<>();
 
 
-                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toURI());
+              //  File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toURI());
+                File file = new File(Environment.getExternalStorageDirectory() + "/Lasy/");
                 if(file.exists()){
                     //Do something
                     //System.out.println("EXIST");
@@ -475,7 +476,8 @@ public class MainActivity extends AppCompatActivity {
                     file.mkdir();
                 }
 
-                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toString();
+//                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toString();
+                String path = Environment.getExternalStorageDirectory() + "/Lasy/";
                 Log.d("Files", "Path: " + path);
                 File directory = new File(path);
                 File[] files = directory.listFiles();
@@ -535,7 +537,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             PdfWriter.getInstance(document,
-                    new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + fileName).toString()));
+               //     new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + fileName).toString()));
+                    new FileOutputStream(Environment.getExternalStorageDirectory() + "/Lasy/" + fileName));
 
             document.open();
         } catch (Exception e) {
