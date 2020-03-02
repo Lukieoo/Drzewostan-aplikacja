@@ -1,5 +1,6 @@
 # Drzewostan-aplikacja
 Drzewostan
+W aktualnej versji dodano autryzacje klucza licencyjnego przez Firebase .
 
 https://play.google.com/store/apps/details?id=com.anioncode.drzewostan
 
