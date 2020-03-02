@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:background="@android:color/background_light"
+    android:layout_height="match_parent">
+
+    <pl.bclogic.pulsator4droid.library.PulsatorLayout
+        android:id="@+id/pulsator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:pulse_color="@color/colorPrimary"
+        app:pulse_count="4"
+        app:pulse_duration="1800"
+        app:pulse_interpolator="Linear"
+        app:pulse_repeat="0"
+        app:pulse_startFromScratch="true">
+        <ImageView
+            android:id="@+id/join"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/forest_100px"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+        <TextView
+            android:id="@+id/tekst"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Kliknij w ikonę by zatwierdzić klucz"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:textSize="15sp"
+            android:id="@+id/licencekey"
+            style="@style/EditTextStyle"
+            android:textStyle="normal"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:text=""
+            android:hint="klucz"
+            android:maxLines="1"
+            android:width="250dp"
+            android:maxWidth="250dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tekst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </pl.bclogic.pulsator4droid.library.PulsatorLayout>
+</RelativeLayout>

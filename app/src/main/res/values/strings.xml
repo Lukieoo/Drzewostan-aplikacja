@@ -32,6 +32,7 @@
     <string name="powi_ksz_obszar_roboczy">Powiększ obszar roboczy</string>
     <string name="wprowadz_odzia">Wprowadz Odział</string>
     <string name="wprowadz_odziax">Wprowadz odział</string>
+    <string name="autoryzacja">Aplikacja Zweryfikowana</string>
 
     <string-array name="numbers">
         <item>0</item>

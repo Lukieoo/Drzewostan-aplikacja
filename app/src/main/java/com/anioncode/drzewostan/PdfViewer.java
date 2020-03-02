@@ -43,10 +43,11 @@ public class PdfViewer extends AppCompatActivity {
 
 
             Intent intentx = new Intent(Intent.ACTION_SEND);
-            intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + Environment.getExternalStorageDirectory() + "/Lasy/" + filename));
+            intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + getApplicationContext().getFilesDir().getAbsolutePath() + "/Lasy/" + filename));
             intentx.setType("aplication/pdf");
             intentx.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(Intent.createChooser(intentx, "Share PDF"));
+
            // Intent sendIntent = new Intent(Intent.ACTION_SEND);
 //            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello!");
 
@@ -59,9 +60,10 @@ public class PdfViewer extends AppCompatActivity {
 //// Show the Sharesheet
 //            startActivity(Intent.createChooser(sendIntent, null));
         });
-
+        System.out.println(Environment.getDataDirectory() + "/Lasy/" + filename);
         //File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + filename).toURI());
-        File file = new File(Environment.getExternalStorageDirectory() + "/Lasy/" + filename);
+//        File file = new File(Environment.getExternalStorageDirectory() + "/Lasy/" + filename);
+        File file = new File(getApplicationContext().getFilesDir().getAbsolutePath() + "/Lasy/" + filename);
         pdfView.fromFile(file) // all pages are displayed by default
                 .enableSwipe(true) // allows to block changing pages using swipe
                 .swipeHorizontal(false)

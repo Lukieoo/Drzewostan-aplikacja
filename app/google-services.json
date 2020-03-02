@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "812441476075",
+    "firebase_url": "https://drzewostan-ad03f.firebaseio.com",
+    "project_id": "drzewostan-ad03f",
+    "storage_bucket": "drzewostan-ad03f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812441476075:android:4e9974ec35e4b1320397ae",
+        "android_client_info": {
+          "package_name": "com.anioncode.drzewostan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812441476075-79mc9mgpkm8h5t3cl256lqpq3apsv865.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuCwXO8ZTReyZf7FPMW-dOQye_3hr_p3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812441476075-79mc9mgpkm8h5t3cl256lqpq3apsv865.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

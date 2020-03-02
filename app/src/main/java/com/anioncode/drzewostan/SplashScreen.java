@@ -19,6 +19,7 @@ import com.anioncode.drzewostan.SQLite.DatabaseUniversal;
 public class SplashScreen extends AppCompatActivity {
     ImageView imageView;
     private SharedPreferences preferences;
+    static public SharedPreferences preferencesLicence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +27,26 @@ public class SplashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
         preferences = getSharedPreferences("0", Activity.MODE_PRIVATE);
+        preferencesLicence = getSharedPreferences("licenceKey", Activity.MODE_PRIVATE);
 
         SharedPreferences.Editor preferencesEditor = preferences.edit();
 
+
         //Toast.makeText(this,"OKi",Toast.LENGTH_LONG).show();
 
-       // preferencesEditor.putString("0","drugi");
-      //  preferencesEditor.commit();
+        // preferencesEditor.putString("0","drugi");
+        //  preferencesEditor.commit();
 
-            String textFromPreferences = preferences.getString("0", "");
+        String textFromPreferences = preferences.getString("0", "");
+        String textFromLicence = preferencesLicence.getString("licenceKey", "");
 
 
         //  Toast.makeText(this,textFromPreferences,Toast.LENGTH_LONG).show();
-        imageView=findViewById(R.id.imagecon);
+        imageView = findViewById(R.id.imagecon);
 //        SplashScreen.this.getSupportActionBar().hide();
 
 
-        Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade);
         imageView.startAnimation(animation);
 //Remove notification bar
         //  this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -51,9 +55,9 @@ public class SplashScreen extends AppCompatActivity {
         //    this.setContentView(R.layout.activity_splash_screen);
 
 
-        if(!textFromPreferences.equals("Pierwszy")){
-           // Toast.makeText(this,"IF",Toast.LENGTH_LONG).show();
-            preferencesEditor.putString("0","Pierwszy");
+        if (!textFromPreferences.equals("Pierwszy")) {
+            // Toast.makeText(this,"IF",Toast.LENGTH_LONG).show();
+            preferencesEditor.putString("0", "Pierwszy");
             preferencesEditor.commit();
             populate1();
             populate2();
@@ -67,74 +71,97 @@ public class SplashScreen extends AppCompatActivity {
             populate10();
             populate11();
 
+            if (!textFromLicence.equals("corect")) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(SplashScreen.this, LicenceActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 1000);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 1000);
+            }
 
-            new Handler().postDelayed(new Runnable() {
-         @Override
-         public void run() {
-             Intent intent= new Intent(SplashScreen.this,MainActivity.class);
-             startActivity(intent);
-             finish();
-         }
-     },1000);
 
-        }else {
+        } else {
+            if (!textFromLicence.equals("corect")) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(SplashScreen.this, LicenceActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 1000);
+            } else {
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
-            Intent intent= new Intent(SplashScreen.this,MainActivity.class);
-            startActivity(intent);
-            finish();
         }
 
 
-
     }
-    private void populate1(){
+
+    private void populate1() {
 
         double tmp;
-        DatabaseHelper databaseHelper=new DatabaseHelper(this);
-        for(int i = 7; i <= 87; i+=2){
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        for (int i = 7; i <= 87; i += 2) {
 
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
 
 
-            databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
-        }
-    }
-    private void populate2(){
-
-        double tmp;
-        DatabaseTablenameHelper databaseHelper=new DatabaseTablenameHelper(this);
-        for(int i = 7; i <= 87; i+=2){
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
-
-            }
-
-            databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
 
-    private void populate3(){
+    private void populate2() {
 
         double tmp;
-        DatabaseAlder databaseHelper=new DatabaseAlder(this);
-        for(int i = 7; i <= 87; i+=2){
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+        DatabaseTablenameHelper databaseHelper = new DatabaseTablenameHelper(this);
+        for (int i = 7; i <= 87; i += 2) {
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
-            databaseHelper.insertData(i+"-"+tmp,0,0,0,0,0,0,0);
+
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
+        }
+    }
+
+    private void populate3() {
+
+        double tmp;
+        DatabaseAlder databaseHelper = new DatabaseAlder(this);
+        for (int i = 7; i <= 87; i += 2) {
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
+
+            }
+            databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
 
@@ -143,11 +170,11 @@ public class SplashScreen extends AppCompatActivity {
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BIRCH");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
@@ -159,11 +186,11 @@ public class SplashScreen extends AppCompatActivity {
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "OAK_RED");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
@@ -175,11 +202,11 @@ public class SplashScreen extends AppCompatActivity {
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BIRDCHERRY");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
@@ -191,11 +218,11 @@ public class SplashScreen extends AppCompatActivity {
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "BEECH");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
@@ -207,56 +234,59 @@ public class SplashScreen extends AppCompatActivity {
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "HORNBEAM");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
+
     private void populate9() {
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "FIR");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
+
     private void populate10() {
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "LARCH");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
         }
     }
+
     private void populate11() {
 
         double tmp;
         DatabaseUniversal databaseHelper = new DatabaseUniversal(this, "SPRUCE");
         for (int i = 7; i <= 87; i += 2) {
-            if(i<27)tmp=i+1.9;
-            else if(i==27)tmp=i+3.9;
-            else{
-                i+=2;
-                tmp=i+3.9;
+            if (i < 27) tmp = i + 1.9;
+            else if (i == 27) tmp = i + 3.9;
+            else {
+                i += 2;
+                tmp = i + 3.9;
 
             }
             databaseHelper.insertData(i + "-" + tmp, 0, 0, 0, 0, 0, 0, 0);
