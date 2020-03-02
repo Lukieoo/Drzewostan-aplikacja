@@ -27,7 +27,8 @@ public class PdfViewer extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+
 
         Intent intent = getIntent();
         String filename = intent.getStringExtra("filename");
@@ -41,9 +42,9 @@ public class PdfViewer extends AppCompatActivity {
            // File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + filename).toString());
            // File file = new File((Environment.getExternalStorageDirectory() + "/Lasy/" + filename).toString());
 
-
+//            getApplicationContext().getFilesDir().getAbsolutePath() ///NOT WORK CORECTLY
             Intent intentx = new Intent(Intent.ACTION_SEND);
-            intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + getApplicationContext().getFilesDir().getAbsolutePath() + "/Lasy/" + filename));
+            intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + Environment.getExternalStorageDirectory()  + "/Lasy/" + filename));
             intentx.setType("aplication/pdf");
             intentx.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(Intent.createChooser(intentx, "Share PDF"));
@@ -63,7 +64,7 @@ public class PdfViewer extends AppCompatActivity {
         System.out.println(Environment.getDataDirectory() + "/Lasy/" + filename);
         //File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + filename).toURI());
 //        File file = new File(Environment.getExternalStorageDirectory() + "/Lasy/" + filename);
-        File file = new File(getApplicationContext().getFilesDir().getAbsolutePath() + "/Lasy/" + filename);
+        File file = new File(Environment.getExternalStorageDirectory()  + "/Lasy/" + filename);
         pdfView.fromFile(file) // all pages are displayed by default
                 .enableSwipe(true) // allows to block changing pages using swipe
                 .swipeHorizontal(false)

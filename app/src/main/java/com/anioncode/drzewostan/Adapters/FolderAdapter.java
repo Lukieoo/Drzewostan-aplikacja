@@ -80,7 +80,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHold
                 public void onClick(DialogInterface dialog, int id) {
 
                    // File file = new File(String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/"+filename)));
-                    File file = new File(Environment.getExternalStorageDirectory() + "/Lasy/"+filename);
+                    File file = new File(Environment.getExternalStorageDirectory()  + "/Lasy/"+filename);
                     boolean deleted = file.delete();
                     filenamelist.remove(position);
                     notifyItemRemoved(position);
@@ -101,8 +101,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.MyViewHold
 
         });
         holder.sending.setOnClickListener(v->{
+
             Intent intentx = new Intent(Intent.ACTION_SEND);
-            intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + Environment.getExternalStorageDirectory() + "/Lasy/" + filename));
+            intentx.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" +Environment.getExternalStorageDirectory()  + "/Lasy/" + filename));
             intentx.setType("aplication/pdf");
             intentx.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             mcontext.startActivity(Intent.createChooser(intentx, "Share PDF"));
