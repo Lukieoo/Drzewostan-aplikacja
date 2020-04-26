@@ -15,13 +15,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
+
     <EditText
         android:id="@+id/editext"
+        style="@style/GuardSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/wprowadz_odziax"
         android:importantForAutofill="no"
         android:inputType=""
-        android:textAlignment="center"
+
+        tools:targetApi="o" />
+
+    <EditText
+        android:layout_marginTop="8dp"
+        style="@style/GuardSection"
+        android:id="@+id/editext2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:hint="@string/Notatka_służbowa"
+        android:importantForAutofill="no"
+        android:gravity="start|top"
+        android:inputType=""
         tools:targetApi="o" />
 </LinearLayout>

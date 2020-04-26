@@ -11,10 +11,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+
 import androidx.annotation.Nullable;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+
 import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AlertDialog;
@@ -139,18 +142,25 @@ public class MainActivity extends AppCompatActivity {
                 LayoutInflater inflater2 = (LayoutInflater) v.getContext().getSystemService(v.getContext().LAYOUT_INFLATER_SERVICE);
                 View view1 = inflater2.inflate(R.layout.odzial_layout, null);
                 final EditText editText = view1.findViewById(R.id.editext);
+                final EditText editext2 = view1.findViewById(R.id.editext2);
 
 
                 builder1.setView(view1);
 
+
                 builder1.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                try {
-                                    saveExcelFile(getApplicationContext(), String.valueOf(editText.getText()).trim() + "_odzial_" + currentTimeMillis() + ".pdf", String.valueOf(editText.getText()).trim());
-                                    Toast.makeText(getApplicationContext(), "Zapisano", Toast.LENGTH_LONG).show();
-                                } catch (Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Wystąpił błąd", Toast.LENGTH_LONG).show();
+                                if (editext2.getText().toString().trim().equals("")){
+                                    Toast.makeText(getApplicationContext(), "Podaj nazwę oddziału", Toast.LENGTH_LONG).show();
+                                }else {
+                                    try {
+                                        saveExcelFile(getApplicationContext(), String.valueOf(editText.getText()).trim() + "_odzial_" + currentTimeMillis() + ".pdf", String.valueOf(editText.getText()).trim(), editext2.getText().toString());
+                                        Toast.makeText(getApplicationContext(), "Zapisano", Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        Toast.makeText(getApplicationContext(), "Wystąpił błąd", Toast.LENGTH_LONG).show();
+                                    }
                                 }
                             }
                         });
@@ -470,19 +480,18 @@ public class MainActivity extends AppCompatActivity {
                 List<String> folderList = new ArrayList<>();
 
 
-              //  File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toURI());
-                File file = new File(Environment.getExternalStorageDirectory()   + "/Lasy/");
-                if(file.exists()){
+                //  File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toURI());
+                File file = new File(Environment.getExternalStorageDirectory() + "/Lasy/");
+                if (file.exists()) {
                     //Do something
                     //System.out.println("EXIST");
-                }
-                else{
+                } else {
                     //Nothing
                     file.mkdir();
                 }
 
 //                String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/").toString();
-                String path =Environment.getExternalStorageDirectory()  + "/Lasy/";
+                String path = Environment.getExternalStorageDirectory() + "/Lasy/";
                 Log.d("Files", "Path: " + path);
                 File directory = new File(path);
                 File[] files = directory.listFiles();
@@ -495,11 +504,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                FolderAdapter mAdapter = new FolderAdapter(MainActivity.this,folderList, new FolderAdapter.PressPDF() {
+                FolderAdapter mAdapter = new FolderAdapter(MainActivity.this, folderList, new FolderAdapter.PressPDF() {
                     @Override
                     public void longClick(String filename) {
-                        Intent intent=new Intent(MainActivity.this,PdfViewer.class);
-                        intent.putExtra("filename",filename);
+                        Intent intent = new Intent(MainActivity.this, PdfViewer.class);
+                        intent.putExtra("filename", filename);
                         startActivity(intent);
                     }
                 });
@@ -535,15 +544,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean saveExcelFile(Context context, String fileName, String odzial) throws DocumentException, IOException {
+    private boolean saveExcelFile(Context context, String fileName, String odzial, String notes) throws DocumentException, IOException {
 
         ///PDF
         Document document = new Document();
 
         try {
             PdfWriter.getInstance(document,
-               //     new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + fileName).toString()));
-                    new FileOutputStream(Environment.getExternalStorageDirectory()  + "/Lasy/" + fileName));
+                    //     new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS + "/Lasy/" + fileName).toString()));
+                    new FileOutputStream(Environment.getExternalStorageDirectory() + "/Lasy/" + fileName));
 
             document.open();
         } catch (Exception e) {
@@ -614,7 +623,23 @@ public class MainActivity extends AppCompatActivity {
 //        c = row.createCell(8);
 //        c.setCellValue("wysokość");
 //        c.setCellStyle(cs);
+        //PDF Notes
 
+        BaseFont urName = BaseFont.createFont("assets/Exoplanetaria.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        Font urFontName = new Font(urName, 15);
+        Chunk chunk1 = new Chunk("Notatka służbowa", urFontName);
+        document.add(chunk1);
+        document.add(Chunk.NEWLINE);
+        Phrase phrase1 = new Phrase(20);
+        document.add(phrase1);
+        urFontName=new Font(urName, 12);
+        Chunk chunk2= new Chunk(notes, urFontName);
+        document.add(chunk2);
+        document.add(Chunk.NEWLINE);
+        Phrase phrase2 = new Phrase(40);
+        document.add(phrase2);
+
+        //PDF!!
         //PDF!!
         pdfCreator(document, odzial, "Sosna", table);
         //PDF!!
@@ -687,6 +712,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //            c = row1.createCell(8);
 //            c.setCellValue(wysokosc);
+
 
             ixx++;
             ///PDF

@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/synchronize"
-                android:textSize="10sp"
+                android:textSize="@dimen/appSize"
                 style="@style/Widget.AppCompat.Button.Borderless"
                  />
             <Button
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ustawienia"
-                android:textSize="10sp"
+                android:textSize="@dimen/appSize"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 />
             <Button
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:drawableStart="@drawable/opened"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="@dimen/appSize"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 />
 

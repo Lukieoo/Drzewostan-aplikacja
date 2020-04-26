@@ -30,8 +30,9 @@
     <string name="aktualna_wersja_">Aktualna wersja 1.5</string>
     <string name="copyright_pawe_krzy_ciak">Copyright Paweł Krzyściak</string>
     <string name="powi_ksz_obszar_roboczy">Powiększ obszar roboczy</string>
-    <string name="wprowadz_odzia">Wprowadz Odział</string>
-    <string name="wprowadz_odziax">Wprowadz odział</string>
+    <string name="wprowadz_odzia">Wprowadź Oddział</string>
+    <string name="wprowadz_odziax">Wprowadź oddział</string>
+    <string name="Notatka_służbowa">Notatka służbowa</string>
     <string name="autoryzacja">Aplikacja Zweryfikowana</string>
 
     <string-array name="numbers">

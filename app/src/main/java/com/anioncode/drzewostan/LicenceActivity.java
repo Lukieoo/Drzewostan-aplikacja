@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -43,7 +44,69 @@ public class LicenceActivity extends AppCompatActivity {
         tekst = (TextView) findViewById(R.id.tekst);
 
         db = FirebaseFirestore.getInstance();
+        licencekey.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
+                    pulsator.start();
+                    licencekey.setVisibility(View.GONE);
+                    tekst.setVisibility(View.GONE);
+                    if (isNetworkConnected()) {
+                        db.collection("licences_key")
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+
+                                                if (licencekey.getText().toString().trim().equals(document.getId())) {
+                                                    new Handler().postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            pulsator.stop();
+                                                            SharedPreferences.Editor preferencesEditor2 = preferencesLicence.edit();
+                                                            preferencesEditor2.putString("licenceKey", "corect");
+                                                            preferencesEditor2.commit();
+                                                            Toast.makeText(LicenceActivity.this, "Klucz prawidłowy", Toast.LENGTH_LONG).show();
+                                                            Intent intent = new Intent(LicenceActivity.this, MainActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    }, 1000);
+                                                } else {
+                                                    Toast.makeText(LicenceActivity.this, "Nie prawidłowy", Toast.LENGTH_LONG).show();
+                                                    pulsator.stop();
+                                                    licencekey.setVisibility(View.VISIBLE);
+                                                    tekst.setVisibility(View.VISIBLE);
+                                                }
+                                            }
+                                        } else {
+                                            pulsator.stop();
+                                            licencekey.setVisibility(View.VISIBLE);
+                                            tekst.setVisibility(View.VISIBLE);
+                                            Toast.makeText(LicenceActivity.this, "Nie możemy nawiązać połączenia", Toast.LENGTH_LONG).show();
+                                            Log.w("okrs", "Error getting documents.", task.getException());
+                                        }
+                                    }
+                                });
+                    } else {
+                        pulsator.stop();
+                        licencekey.setVisibility(View.VISIBLE);
+                        tekst.setVisibility(View.VISIBLE);
+                        Toast.makeText(LicenceActivity.this, "Brak połączenia do autoryzacji", Toast.LENGTH_LONG).show();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
         join.setOnClickListener(v -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -52,59 +115,60 @@ public class LicenceActivity extends AppCompatActivity {
             pulsator.start();
             licencekey.setVisibility(View.GONE);
             tekst.setVisibility(View.GONE);
-            if (isNetworkConnected()){
-            db.collection("licences_key")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
+            if (isNetworkConnected()) {
+                db.collection("licences_key")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
 
 
-
-                                    if (licencekey.getText().toString().trim().equals(document.getId()) ) {
-                                        new Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                pulsator.stop();
-                                                SharedPreferences.Editor preferencesEditor2 = preferencesLicence.edit();
-                                                preferencesEditor2.putString("licenceKey", "corect");
-                                                preferencesEditor2.commit();
-                                                Toast.makeText(LicenceActivity.this,"Klucz prawidłowy",Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(LicenceActivity.this, MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-                                            }
-                                        }, 1000);
-                                    } else {
-                                        Toast.makeText(LicenceActivity.this,"Nie prawidłowy",Toast.LENGTH_LONG).show();
-                                        pulsator.stop();
-                                        licencekey.setVisibility(View.VISIBLE);
-                                        tekst.setVisibility(View.VISIBLE);
+                                        if (licencekey.getText().toString().trim().equals(document.getId())) {
+                                            new Handler().postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    pulsator.stop();
+                                                    SharedPreferences.Editor preferencesEditor2 = preferencesLicence.edit();
+                                                    preferencesEditor2.putString("licenceKey", "corect");
+                                                    preferencesEditor2.commit();
+                                                    Toast.makeText(LicenceActivity.this, "Klucz prawidłowy", Toast.LENGTH_LONG).show();
+                                                    Intent intent = new Intent(LicenceActivity.this, MainActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            }, 1000);
+                                        } else {
+                                            Toast.makeText(LicenceActivity.this, "Nie prawidłowy", Toast.LENGTH_LONG).show();
+                                            pulsator.stop();
+                                            licencekey.setVisibility(View.VISIBLE);
+                                            tekst.setVisibility(View.VISIBLE);
+                                        }
                                     }
+                                } else {
+                                    pulsator.stop();
+                                    licencekey.setVisibility(View.VISIBLE);
+                                    tekst.setVisibility(View.VISIBLE);
+                                    Toast.makeText(LicenceActivity.this, "Nie możemy nawiązać połączenia", Toast.LENGTH_LONG).show();
+                                    Log.w("okrs", "Error getting documents.", task.getException());
                                 }
-                            } else {
-                                pulsator.stop();
-                                licencekey.setVisibility(View.VISIBLE);
-                                tekst.setVisibility(View.VISIBLE);
-                                Toast.makeText(LicenceActivity.this,"Nie możemy nawiązać połączenia",Toast.LENGTH_LONG).show();
-                                Log.w("okrs", "Error getting documents.", task.getException());
                             }
-                        }
-                    });
-            }else {
+                        });
+            } else {
                 pulsator.stop();
                 licencekey.setVisibility(View.VISIBLE);
                 tekst.setVisibility(View.VISIBLE);
-                Toast.makeText(LicenceActivity.this,"Brak połączenia do autoryzacji",Toast.LENGTH_LONG).show();
+                Toast.makeText(LicenceActivity.this, "Brak połączenia do autoryzacji", Toast.LENGTH_LONG).show();
             }
         });
     }
+
     private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager)  getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }
+
     public boolean internetIsConnected() {
         try {
             String command = "ping -c 1 google.com";
