@@ -33,7 +33,7 @@
     <string name="wprowadz_odzia">Wprowadź Oddział</string>
     <string name="wprowadz_odziax">Wprowadź oddział</string>
     <string name="Notatka_służbowa">Notatka służbowa</string>
-    <string name="autoryzacja">Aplikacja Zweryfikowana</string>
+    <string name="autoryzacja">Aplikacja niezweryfikowana \n - Wersja z reklamami</string>
 
     <string-array name="numbers">
         <item>0</item>

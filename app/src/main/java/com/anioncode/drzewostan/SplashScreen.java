@@ -71,16 +71,18 @@ public class SplashScreen extends AppCompatActivity {
             populate10();
             populate11();
 
-            if (!textFromLicence.equals("corect")) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SplashScreen.this, LicenceActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }, 1000);
-            } else {
+            //Licencja
+//            if (!textFromLicence.equals("corect")) {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent intent = new Intent(SplashScreen.this, LicenceActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }, 1000);
+//            } else {
+                //Licencja koniec iplementacji
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -89,24 +91,26 @@ public class SplashScreen extends AppCompatActivity {
                         finish();
                     }
                 }, 1000);
-            }
+//            }
 
 
         } else {
-            if (!textFromLicence.equals("corect")) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SplashScreen.this, LicenceActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }, 1000);
-            } else {
+            //Licencja
+//            if (!textFromLicence.equals("corect")) {
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent intent = new Intent(SplashScreen.this, LicenceActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }, 1000);
+//            } else {
+                //Licencja koniec iplementacji
                 Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-            }
+//            }
 
         }
 

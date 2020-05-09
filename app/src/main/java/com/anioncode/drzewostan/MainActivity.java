@@ -151,11 +151,11 @@ public class MainActivity extends AppCompatActivity {
                 builder1.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                if (editext2.getText().toString().trim().equals("")){
-                                    Toast.makeText(getApplicationContext(), "Podaj nazwę oddziału", Toast.LENGTH_LONG).show();
+                                if (editText.getText().toString().trim().equals("")){
+                                    Toast.makeText(getApplicationContext(), "Nie zapisano, brak nazwy oddziału", Toast.LENGTH_LONG).show();
                                 }else {
                                     try {
-                                        saveExcelFile(getApplicationContext(), String.valueOf(editText.getText()).trim() + "_odzial_" + currentTimeMillis() + ".pdf", String.valueOf(editText.getText()).trim(), editext2.getText().toString());
+                                        saveExcelFile(getApplicationContext(), String.valueOf(editText.getText()).trim() + "_oddzial_" + currentTimeMillis() + ".pdf", String.valueOf(editText.getText()).trim(), editext2.getText().toString());
                                         Toast.makeText(getApplicationContext(), "Zapisano", Toast.LENGTH_LONG).show();
                                     } catch (Exception e) {
                                         e.printStackTrace();
