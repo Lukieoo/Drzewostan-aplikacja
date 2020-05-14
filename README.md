@@ -1,5 +1,5 @@
 # Drzewostan-aplikacja
-Drzewostan
+Drzewostan demostracyjna 
 <p>W aktualnej wersji dodano autoryzacje klucza licencyjnego przez Firebase . Aplikacja służy do optymalizacji czasu pracy leśników podczas szacunków leśnych . </p>
 
 
