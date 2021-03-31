@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 
 import com.anioncode.drzewostan.Model.Trees;
 import com.anioncode.drzewostan.R;
@@ -29,8 +30,6 @@ public class UniversalAdapter extends BaseAdapter {
     ArrayList<Trees> arrayList;
     DatabaseUniversal databaseHelper;
     String tablenazwa;
-
-    // DatabaseHelper databaseHelper;
 
     public UniversalAdapter(Context context, ArrayList<Trees> arrayList, String tablenazwa) {
         this.context = context;
@@ -60,7 +59,6 @@ public class UniversalAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.listrow, null);
 
-        //  TextView text_id=(TextView)view.findViewById(R.id.zakres);
         TextView text_srednica = (TextView) view.findViewById(R.id.zakres);
         final TextView ilosc = (TextView) view.findViewById(R.id.ilosc);
         Button button_plus = (Button) view.findViewById(R.id.button_plus);
@@ -70,8 +68,6 @@ public class UniversalAdapter extends BaseAdapter {
 
         final Trees trees = arrayList.get(i);
         final int x = i;
-
-///SPINER BEZ SZUKANIA POZYCJI A WARTOsci
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.numbers, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -92,7 +88,6 @@ public class UniversalAdapter extends BaseAdapter {
                 if (tes.equals("0")) {
 
                 } else {
-                    //  Toast.makeText(context,"SZtos"+spinner.getSelectedItemId(),Toast.LENGTH_SHORT).show();
                     trees.setWysokosc(Math.toIntExact(spinner.getSelectedItemId()));
                     databaseHelper.updateData("WYSOKOSC", Math.toIntExact(getItemId(x) + 1), Math.toIntExact(spinner.getSelectedItemId()));
                 }
@@ -105,19 +100,15 @@ public class UniversalAdapter extends BaseAdapter {
             }
 
         });
-        ////////////////////////////////////////////
 
         ilosc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ///DIALOG
-
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
 
                 LayoutInflater inflater2 = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
                 View view1 = inflater2.inflate(R.layout.dialog_trees, null);
 
-                ///Tworzenie pola tekstowego
                 final TextView iloscWa = view1.findViewById(R.id.iloscWA);
                 final TextView iloscWb = view1.findViewById(R.id.iloscWB);
                 final TextView iloscWc = view1.findViewById(R.id.iloscWC);
@@ -126,7 +117,6 @@ public class UniversalAdapter extends BaseAdapter {
                 final TextView iloscB = view1.findViewById(R.id.iloscB);
                 final TextView iloscC_S = view1.findViewById(R.id.iloscC_S);
 
-                ///Wypełnianie pola tekstem
                 iloscWa.setText(String.valueOf(trees.getKlasa_1()));
                 iloscWb.setText(String.valueOf(trees.getKlasa_2()));
                 iloscWc.setText(String.valueOf(trees.getKlasa_3()));
@@ -135,8 +125,6 @@ public class UniversalAdapter extends BaseAdapter {
                 iloscB.setText(String.valueOf(trees.getKlasa_b()));
                 iloscC_S.setText(String.valueOf(trees.getKlasa_c()));
 
-
-                ///DLA 1 KLASY
                 Button button_minusWA = (Button) view1.findViewById(R.id.button_minusWA);
                 Button button_plusWA = (Button) view1.findViewById(R.id.button_plusWA);
 
@@ -175,8 +163,6 @@ public class UniversalAdapter extends BaseAdapter {
                         iloscWa.setText(String.valueOf(liczba));
                     }
                 });
-
-                ///DLA 2 KLASY
 
                 Button button_minusWB = (Button) view1.findViewById(R.id.button_minusWB);
                 Button button_plusWB = (Button) view1.findViewById(R.id.button_plus_WB);
@@ -257,8 +243,6 @@ public class UniversalAdapter extends BaseAdapter {
                         iloscWc.setText(String.valueOf(liczba));
                     }
                 });
-                ///DLA A KLASY
-
                 Button button_minusA = (Button) view1.findViewById(R.id.button_minusA);
                 Button button_plus_A = (Button) view1.findViewById(R.id.button_plus_A);
 
@@ -298,7 +282,6 @@ public class UniversalAdapter extends BaseAdapter {
                     }
                 });
 
-                ///DLA B KLASY
                 Button button_minusB = (Button) view1.findViewById(R.id.button_minusB);
                 Button button_plus_B = (Button) view1.findViewById(R.id.button_plus_B);
 
@@ -337,8 +320,6 @@ public class UniversalAdapter extends BaseAdapter {
                         iloscB.setText(String.valueOf(liczba));
                     }
                 });
-
-                ///DLA C KLASY
 
                 Button button_minusC_S = (Button) view1.findViewById(R.id.button_minusC_S);
                 Button button_plus_C_S = (Button) view1.findViewById(R.id.button_plus_C_S);
@@ -380,8 +361,6 @@ public class UniversalAdapter extends BaseAdapter {
                 });
 
                 builder1.setView(view1);
-
-
                 builder1.setPositiveButton(
                         "OK",
                         new DialogInterface.OnClickListener() {
@@ -397,12 +376,7 @@ public class UniversalAdapter extends BaseAdapter {
             }
         });
 
-        //Licznik do iklementacji
-
-
         text_srednica.setText(String.valueOf(trees.getSrednica()));
-
-        //ilosc.setText(String.valueOf(trees.getKlasa_3()));
         ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
 
         databaseHelper = new DatabaseUniversal(view.getContext(), tablenazwa);
@@ -430,17 +404,13 @@ public class UniversalAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
-                // int liczbax=Integer.parseInt(String.valueOf(ilosc.getText()))-1;
-
                 try {
-                    //Do Updateowania
                     databaseHelper.updateData("KLASA_3", Math.toIntExact(getItemId(x) + 1), trees.getKlasa_3() - 1);
                     trees.setKlasa_3(trees.getKlasa_3() - 1);
                 } catch (Exception e) {
                     ;
                 }
 
-                //  ilosc.setText(String.valueOf(liczbax));
                 ilosc.setText(String.valueOf(suma_wszystkich(Math.toIntExact(getItemId(x) + 1))));
 
 
@@ -454,15 +424,9 @@ public class UniversalAdapter extends BaseAdapter {
         int suma = 0;
         Cursor data = databaseHelper.LasDane(iso);
         while (data.moveToNext()) {
-            //get the value from the database in column 1
-            //then add it to the ArrayList
             suma = data.getInt(2) + data.getInt(3) + data.getInt(4) + data.getInt(5) + data.getInt(6) + data.getInt(7);
 
-            //listData.add(data.getInt(0)+". L: "+data.getDouble(1)+", P: "+data.getDouble(2)+" "+data.getString(3)+" "+data.getString(4));
-            //System.out.println(data.getInt(4)+" ......................................................................................................................................TU");
-
         }
-
         return suma;
     }
 

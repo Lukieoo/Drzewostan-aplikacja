@@ -15,6 +15,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
+    <EditText
+        android:id="@+id/tv_name_user"
+        style="@style/GuardSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_of_user"
+        android:importantForAutofill="no"
+        android:inputType=""
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/editext"
