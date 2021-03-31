@@ -15,7 +15,7 @@ public class DatabaseUniversal extends SQLiteOpenHelper {
     String tabelaNazwa;
 
     public DatabaseUniversal(Context context, String tabelaNazwa) {
-        super(context, "las" + tabelaNazwa + ".db", null, 1);
+        super(context, "las" + tabelaNazwa + ".db", null, 2);
         this.tabelaNazwa = tabelaNazwa;
     }
 
@@ -100,7 +100,7 @@ public class DatabaseUniversal extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean updateDatado0(int id, int klasa_1, int klasa_2, int klasa_3, int klasa_a, int klasa_b, int klasa_c, int wysokosc) {
+    public boolean resetDatabase(int id, int klasa_1, int klasa_2, int klasa_3, int klasa_a, int klasa_b, int klasa_c, int wysokosc) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 

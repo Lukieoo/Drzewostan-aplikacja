@@ -1,4 +1,4 @@
-package com.anioncode.drzewostan;
+package com.anioncode.drzewostan.Adapters;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -8,13 +8,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Viewpageradapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    ///Tworze listy
     private final List<Fragment>fragmentsList=new ArrayList<>();
     private final List<String>FragmentListTitles=new ArrayList<>();
 
-    public Viewpageradapter(FragmentManager fm) {
+    public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
