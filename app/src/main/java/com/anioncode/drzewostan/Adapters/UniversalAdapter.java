@@ -132,17 +132,21 @@ public class UniversalAdapter extends BaseAdapter {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        int liczba = Integer.parseInt(String.valueOf(iloscWa.getText())) - 1;
-                        trees.setKlasa_1(liczba);
-                        try {
+                        if ((Integer.parseInt(String.valueOf(iloscWa.getText()))) > 0) {
 
-                            databaseHelper.updateData("KLASA_1", Math.toIntExact(getItemId(x) + 1), liczba);
+                            int liczba = Integer.parseInt(String.valueOf(iloscWa.getText())) - 1;
 
-                        } catch (Exception e) {
+                            trees.setKlasa_1(liczba);
+                            try {
 
+                                databaseHelper.updateData("KLASA_1", Math.toIntExact(getItemId(x) + 1), liczba);
+
+                            } catch (Exception e) {
+
+                            }
+                            ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
+                            iloscWa.setText(String.valueOf(liczba));
                         }
-                        ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
-                        iloscWa.setText(String.valueOf(liczba));
                     }
                 });
 
@@ -171,17 +175,19 @@ public class UniversalAdapter extends BaseAdapter {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        int liczba = Integer.parseInt(String.valueOf(iloscWb.getText())) - 1;
-                        trees.setKlasa_2(liczba);
-                        try {
+                        if ((Integer.parseInt(String.valueOf(iloscWb.getText()))) > 0) {
+                            int liczba = Integer.parseInt(String.valueOf(iloscWb.getText())) - 1;
+                            trees.setKlasa_2(liczba);
+                            try {
 
-                            databaseHelper.updateData("KLASA_2", Math.toIntExact(getItemId(x) + 1), liczba);
+                                databaseHelper.updateData("KLASA_2", Math.toIntExact(getItemId(x) + 1), liczba);
 
-                        } catch (Exception e) {
+                            } catch (Exception e) {
 
+                            }
+                            ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
+                            iloscWb.setText(String.valueOf(liczba));
                         }
-                        ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
-                        iloscWb.setText(String.valueOf(liczba));
                     }
                 });
 
@@ -212,17 +218,19 @@ public class UniversalAdapter extends BaseAdapter {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        int liczba = Integer.parseInt(String.valueOf(iloscWc.getText())) - 1;
-                        trees.setKlasa_3(liczba);
-                        try {
+                        if ((Integer.parseInt(String.valueOf(iloscWc.getText()))) > 0) {
+                            int liczba = Integer.parseInt(String.valueOf(iloscWc.getText())) - 1;
+                            trees.setKlasa_3(liczba);
+                            try {
 
-                            databaseHelper.updateData("KLASA_3", Math.toIntExact(getItemId(x) + 1), liczba);
+                                databaseHelper.updateData("KLASA_3", Math.toIntExact(getItemId(x) + 1), liczba);
 
-                        } catch (Exception e) {
+                            } catch (Exception e) {
 
+                            }
+                            ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
+                            iloscWc.setText(String.valueOf(liczba));
                         }
-                        ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
-                        iloscWc.setText(String.valueOf(liczba));
                     }
                 });
 
@@ -250,17 +258,19 @@ public class UniversalAdapter extends BaseAdapter {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        int liczba = Integer.parseInt(String.valueOf(iloscA.getText())) - 1;
-                        trees.setKlasa_a(liczba);
-                        try {
+                        if ((Integer.parseInt(String.valueOf(iloscA.getText()))) > 0) {
+                            int liczba = Integer.parseInt(String.valueOf(iloscA.getText())) - 1;
+                            trees.setKlasa_a(liczba);
+                            try {
 
-                            databaseHelper.updateData("KLASA_A", Math.toIntExact(getItemId(x) + 1), liczba);
+                                databaseHelper.updateData("KLASA_A", Math.toIntExact(getItemId(x) + 1), liczba);
 
-                        } catch (Exception e) {
+                            } catch (Exception e) {
 
+                            }
+                            ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
+                            iloscA.setText(String.valueOf(liczba));
                         }
-                        ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
-                        iloscA.setText(String.valueOf(liczba));
                     }
                 });
 
@@ -289,17 +299,19 @@ public class UniversalAdapter extends BaseAdapter {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        int liczba = Integer.parseInt(String.valueOf(iloscB.getText())) - 1;
-                        trees.setKlasa_a(liczba);
-                        try {
+                        if ((Integer.parseInt(String.valueOf(iloscB.getText()))) > 0) {
+                            int liczba = Integer.parseInt(String.valueOf(iloscB.getText())) - 1;
+                            trees.setKlasa_a(liczba);
+                            try {
 
-                            databaseHelper.updateData("KLASA_B", Math.toIntExact(getItemId(x) + 1), liczba);
+                                databaseHelper.updateData("KLASA_B", Math.toIntExact(getItemId(x) + 1), liczba);
 
-                        } catch (Exception e) {
+                            } catch (Exception e) {
 
+                            }
+                            ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
+                            iloscB.setText(String.valueOf(liczba));
                         }
-                        ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
-                        iloscB.setText(String.valueOf(liczba));
                     }
                 });
 
@@ -328,17 +340,19 @@ public class UniversalAdapter extends BaseAdapter {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onClick(View view) {
-                        int liczba = Integer.parseInt(String.valueOf(iloscC_S.getText())) - 1;
-                        trees.setKlasa_c(liczba);
-                        try {
+                        if ((Integer.parseInt(String.valueOf(iloscC_S.getText()))) > 0) {
+                            int liczba = Integer.parseInt(String.valueOf(iloscC_S.getText())) - 1;
+                            trees.setKlasa_c(liczba);
+                            try {
 
-                            databaseHelper.updateData("KLASA_C", Math.toIntExact(getItemId(x) + 1), liczba);
+                                databaseHelper.updateData("KLASA_C", Math.toIntExact(getItemId(x) + 1), liczba);
 
-                        } catch (Exception e) {
+                            } catch (Exception e) {
 
+                            }
+                            ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
+                            iloscC_S.setText(String.valueOf(liczba));
                         }
-                        ilosc.setText(String.valueOf(trees.getKlasa_1() + trees.getKlasa_2() + trees.getKlasa_3() + trees.getKlasa_a() + trees.getKlasa_b() + trees.getKlasa_c()));
-                        iloscC_S.setText(String.valueOf(liczba));
                     }
                 });
 
@@ -403,17 +417,18 @@ public class UniversalAdapter extends BaseAdapter {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
+                if (trees.getKlasa_3() > 0) {
 
-                try {
-                    databaseHelper.updateData("KLASA_3", Math.toIntExact(getItemId(x) + 1), trees.getKlasa_3() - 1);
-                    trees.setKlasa_3(trees.getKlasa_3() - 1);
-                } catch (Exception e) {
-                    ;
+                    try {
+                        databaseHelper.updateData("KLASA_3", Math.toIntExact(getItemId(x) + 1), trees.getKlasa_3() - 1);
+                        trees.setKlasa_3(trees.getKlasa_3() - 1);
+                    } catch (Exception e) {
+                        ;
+                    }
+
+                    ilosc.setText(String.valueOf(suma_wszystkich(Math.toIntExact(getItemId(x) + 1))));
+
                 }
-
-                ilosc.setText(String.valueOf(suma_wszystkich(Math.toIntExact(getItemId(x) + 1))));
-
-
             }
         });
 
