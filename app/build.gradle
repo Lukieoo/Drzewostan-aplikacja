@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.anioncode.drzewostan"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 6
-        versionName "1.5"
+        targetSdkVersion 30
+        versionCode 8
+        versionName "1.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
