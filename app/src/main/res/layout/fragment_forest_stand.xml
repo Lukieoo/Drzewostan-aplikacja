@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.anioncode.drzewostan.R" />
+
+        <variable
+            name="viewModel"
+            type="com.anioncode.drzewostan.features.presentation.modules.forestStand.ForestStandViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottom"
+            android:layout_alignEnd="@id/bottom"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/save"
+            android:elevation="5dp"
+            android:foregroundGravity="center"
+            android:src="@drawable/save" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:elevation="0dp"
+            android:gravity="center">
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-3788232558823244/7616183954" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/todo"
+                android:maxWidth="80dp"
+                android:maxHeight="80dp"
+                android:padding="10dp"
+                android:src="@drawable/forest_100px" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/Base.Widget.Design.TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appBar"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/Appbar"
+            app:tabMinWidth="100dp"
+            app:tabMode="scrollable"
+            app:tabPaddingEnd="6dp"
+            app:tabPaddingStart="6dp"
+            app:tabRippleColor="@color/colorPrimaryDark"
+            app:tabTextColor="@color/Text" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom"
+            android:layout_below="@id/tabLayout"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:verticalScrollbarPosition="right" />
+
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnReset"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/synchronize"
+                android:text="@string/resetuj"
+                android:textColor="@color/Text"
+                android:textSize="@dimen/appSize" />
+
+            <Button
+                android:id="@+id/save"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/settings"
+                android:text="@string/settings"
+                android:textColor="@color/Text"
+                android:textSize="@dimen/appSize" />
+
+            <Button
+                android:id="@+id/btnSend"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/opened"
+                android:text="@string/Zapisane"
+                android:textColor="@color/Text"
+                android:textSize="@dimen/appSize" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
+

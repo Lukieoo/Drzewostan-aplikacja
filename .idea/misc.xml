@@ -3,7 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/activity_licence.xml" value="0.18802083333333333" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/activity_pdf_viewer.xml" value="0.1" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/activity_splash_screen.xml" value="0.21197916666666666" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/alder_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/app_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/dialog_file_explorer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/dialog_trees.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/fragment_forest_stand.xml" value="0.18802083333333333" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/item_file.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/listrow.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/odzial_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/pine_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/setings_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antek/Drzewostan-aplikacja/app/src/main/res/layout/universal_layout.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

@@ -1,143 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabsave"
-        android:elevation="5dp"
-        android:src="@drawable/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom"
-        android:layout_alignEnd="@id/bottom"
-        android:foregroundGravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
-
-        />
-
-   <com.google.android.material.appbar.AppBarLayout
-       android:layout_width="match_parent"
-       android:layout_height="120dp"
-       android:gravity="center"
-       android:elevation="0dp"
-
-       android:id="@+id/appbarid">
-
-       <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-           android:id="@+id/adView"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_alignParentTop="true"
-           ads:adSize="BANNER"
-           ads:adUnitId="ca-app-pub-3788232558823244/7616183954"></com.google.android.gms.ads.AdView>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="80dp"
-        android:maxHeight="80dp"
-        android:padding="10dp"
-        android:src="@drawable/forest_100px"
-        android:contentDescription="@string/todo" />
-   </com.google.android.material.appbar.AppBarLayout>
-    <com.google.android.material.tabs.TabLayout
-        android:layout_below="@id/appbarid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabMode="scrollable"
-        app:tabPaddingEnd="6dp"
-        app:tabPaddingStart="6dp"
-        android:id="@+id/tablayout_id"
-        app:tabTextColor="@color/Text"
-        app:tabRippleColor="@color/colorPrimaryDark"
-        app:tabIndicatorColor="@color/Appbar"
-        app:tabMinWidth="100dp"
-
-        style="@style/Base.Widget.Design.TabLayout"
-       />
-<!--    android:background="@color/colorPrimary"-->
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager_id"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom"
-        android:layout_below="@id/tablayout_id"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:verticalScrollbarPosition="right"></androidx.viewpager.widget.ViewPager>
+        app:defaultNavHost="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_menu" />
 
-    <LinearLayout
-            android:id="@+id/bottom"
-            android:background="@color/colorPrimary"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:weightSum="3"
-
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/reset"
-                android:layout_weight="1"
-                android:text="@string/resetuj"
-                android:textColor="@color/Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/synchronize"
-                android:textSize="@dimen/appSize"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                 />
-            <Button
-                android:id="@+id/save"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/settings"
-                android:textColor="@color/Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ustawienia"
-                android:textSize="@dimen/appSize"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                />
-            <Button
-                android:id="@+id/send"
-                android:layout_weight="1"
-                android:text="@string/Zapisane"
-                android:textColor="@color/Text"
-                android:layout_width="wrap_content"
-                android:drawableStart="@drawable/opened"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/appSize"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                />
-
-        </LinearLayout>
-
-    <!--<android.support.design.widget.BottomNavigationView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/bottom"-->
-        <!--app:menu="@menu/bottom_nav"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:layout_alignParentBottom="true"-->
-
-        <!--/>-->
-
-
-
-</RelativeLayout>
-
-    <!--I will add my answer since I don't use any of the other answers provided.-->
-
-    <!--With the Support Library v7, all the styles are actually already defined and ready to use, for the standard buttons, all of these styles are available:-->
-
-    <!--style="@style/Widget.AppCompat.Button"-->
-    <!--style="@style/Widget.AppCompat.Button.Colored"-->
-    <!--style="@style/Widget.AppCompat.Button.Borderless"-->
-    <!--style="@style/Widget.AppCompat.Button.Borderless.Colored"-->
+</androidx.constraintlayout.widget.ConstraintLayout>
