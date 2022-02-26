@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,8 @@ import com.anioncode.drzewostan.utils.TreeListMock;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -81,7 +84,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        MobileAds.initialize(this, "ca-app-pub-3788232558823244~9887124070");
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
+
+            }
+        });
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -216,7 +225,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
 
-                LayoutInflater inflater2 = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater2 = (LayoutInflater) view
+                        .getContext()
+                        .getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
+
                 View view1 = inflater2.inflate(R.layout.setings_layout, null);
 
                 String txt = sharedPref.getString("dane", "");
@@ -227,24 +239,20 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     checkBox.setChecked(false);
                 }
-                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
 
-                                                        @Override
-                                                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                            if (isChecked) {
-
-                                                                SharedPreferences.Editor editor = sharedPref.edit();
-                                                                editor.putString("dane", "Yes");
-                                                                editor.commit();
-                                                                //     Toast.makeText(getApplicationContext(),sharedPref.getString("dane", ""),Toast.LENGTH_SHORT).show();
-                                                            } else {
-                                                                SharedPreferences.Editor editor = sharedPref.edit();
-                                                                editor.putString("dane", "NO");
-                                                                editor.commit();
-                                                                //     Toast.makeText(getApplicationContext(),sharedPref.getString("dane", ""),Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    }
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("dane", "Yes");
+                        editor.commit();
+                        //     Toast.makeText(getApplicationContext(),sharedPref.getString("dane", ""),Toast.LENGTH_SHORT).show();
+                    } else {
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("dane", "NO");
+                        editor.commit();
+                        //     Toast.makeText(getApplicationContext(),sharedPref.getString("dane", ""),Toast.LENGTH_SHORT).show();
+                    }
+                }
                 );
 
                 builder1.setView(view1);
@@ -271,7 +279,9 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
 
-                LayoutInflater inflater2 = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater2 = (LayoutInflater) view
+                        .getContext()
+                        .getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
                 View view1 = inflater2.inflate(R.layout.dialog_file_explorer, null);
                 RecyclerView recyclerView = view1.findViewById(R.id.filesRec);
                 List<String> folderList = new ArrayList<>();
@@ -287,10 +297,11 @@ public class MainActivity extends AppCompatActivity {
                 File directory = new File(path);
                 File[] files = directory.listFiles();
 
+                assert files != null;
                 Log.d("Files", "Size: " + files.length);
-                for (int i = 0; i < files.length; i++) {
-                    folderList.add(files[i].getName());
-                    Log.d("Files", "FileName:" + files[i].getName());
+                for (File value : files) {
+                    folderList.add(value.getName());
+                    Log.d("Files", "FileName:" + value.getName());
 
                 }
 
@@ -325,6 +336,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 10:
                 if (requestCode == RESULT_OK) {

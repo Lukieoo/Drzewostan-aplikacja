@@ -3,15 +3,15 @@ package com.anioncode.drzewostan;
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import androidx.core.app.ActivityCompat;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 
