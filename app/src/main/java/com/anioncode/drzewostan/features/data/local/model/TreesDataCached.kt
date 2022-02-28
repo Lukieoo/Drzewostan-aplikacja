@@ -8,6 +8,7 @@ import com.anioncode.drzewostan.features.domain.model.TreesData
 data class TreesDataCached(
     @PrimaryKey
     var id: Int,
+    var type: Int,
     var diameter: String?,
     var height: Int,
     var firstClass: Int,
@@ -21,6 +22,7 @@ data class TreesDataCached(
         treesData: TreesData
     ) : this(
         id = treesData.id,
+        type = treesData.type,
         diameter = treesData.diameter,
         height = treesData.height,
         firstClass = treesData.firstClass,
@@ -33,6 +35,7 @@ data class TreesDataCached(
 
     fun toTreesData() = TreesData(
         id = id,
+        type = type,
         diameter = diameter,
         height = height,
         firstClass = firstClass,

@@ -56,4 +56,5 @@ dependencies {
     implementation kaptDependencies.values()
     // Test dependencies
     testImplementation testDependencies.values()
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
 }

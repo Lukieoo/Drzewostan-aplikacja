@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class TreesDataDisplayable(
     var id: Int,
+    var type: Int,
     var diameter: String?,
     var height: Int,
     var firstClass: Int,
@@ -21,6 +22,7 @@ data class TreesDataDisplayable(
         treesData: TreesData
     ) : this(
         id = treesData.id,
+        type = treesData.type,
         diameter = treesData.diameter,
         height = treesData.height,
         firstClass = treesData.firstClass,

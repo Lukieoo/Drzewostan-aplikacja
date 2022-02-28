@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.anioncode.drzewostan.R" />
+
+        <variable
+            name="item"
+            type="com.anioncode.drzewostan.features.presentation.model.TreesDataDisplayable" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/tvRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="20"
+            android:maxWidth="30dp"
+            android:text="@string/_1_100"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:background="@drawable/shape"
+            android:minWidth="40dp"
+            android:text="@string/__"
+            android:textColor="@color/Appbar"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:maxWidth="30dp"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <Button
+
+            android:id="@+id/btnPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:background="@drawable/shape"
+            android:minWidth="40dp"
+            android:text="@string/____"
+            android:textColor="@color/Appbar"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/Base.Widget.AppCompat.Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:padding="0dp"
+            android:textAlignment="center">
+
+        </Spinner>
+
+    </LinearLayout>
+</layout>

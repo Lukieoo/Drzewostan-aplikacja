@@ -1,4 +1,4 @@
-package com.anioncode.drzewostan.features.presentation.modules.forestStand
+package com.anioncode.drzewostan.features.presentation.modules.forestStand.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

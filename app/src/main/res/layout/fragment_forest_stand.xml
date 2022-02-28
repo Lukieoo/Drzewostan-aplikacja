@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.anioncode.drzewostan.features.presentation.modules.forestStand.ForestStandViewModel" />
+            type="com.anioncode.drzewostan.features.presentation.modules.forestStand.view_models.ForestStandViewModel" />
     </data>
 
     <RelativeLayout

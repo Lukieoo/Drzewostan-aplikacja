@@ -5,8 +5,6 @@ import com.anioncode.drzewostan.features.TreesDataRepository
 import com.anioncode.drzewostan.features.domain.model.TreesData
 
 class GetTreesDataUseCase(private val treesDataRepository: TreesDataRepository) :
-    UseCase<List<TreesData>, Unit>() {
-    override suspend fun action(params: Unit): List<TreesData> {
-        return treesDataRepository.getTreesData()
-    }
+    UseCase<List<TreesData>, Int>() {
+    override suspend fun action(params: Int): List<TreesData> = treesDataRepository.getTreesData(params)
 }

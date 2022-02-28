@@ -78,4 +78,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">save</string>
     <string name="settings">Ustawienia</string>
+    <string name="pine">Sosna</string>
+    <string name="oak">Dąb Szypułkowy</string>
+    <string name="oak_sh">Dąb Sz.</string>
+    <string name="alder">Olszyna</string>
+    <string name="birch">Brzoza</string>
+    <string name="red_oak">Dąb Czerwony</string>
+    <string name="red_oak_sh">Dąb Czer.</string>
+    <string name="birdcherry">Czeremch</string>
+    <string name="beech">Buk</string>
+    <string name="hornbeam">Grab</string>
+    <string name="fir">Jodła</string>
+    <string name="larch">Modrzew</string>
+    <string name="spruce">Świerk</string>
 </resources>

@@ -7,12 +7,12 @@ import com.anioncode.drzewostan.features.domain.model.TreesData
 class TreesDataRepositoryImpl(
     private val treesDataDao: TreesDataDao,
 ) : TreesDataRepository {
-    override suspend fun getTreesData(): List<TreesData> {
-        return getTreesDataLocal()
+    override suspend fun getTreesData(type : Int): List<TreesData> {
+        return getTreesDataLocal(type)
     }
 
-    private fun getTreesDataLocal(): List<TreesData> {
-        return treesDataDao.getTreesDataList()
+    private fun getTreesDataLocal(type : Int): List<TreesData> {
+        return treesDataDao.getTreesDataList(type)
             .map { it.toTreesData() }
     }
 }

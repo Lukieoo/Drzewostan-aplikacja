@@ -5,9 +5,8 @@ import com.anioncode.drzewostan.features.data.repository.TreesDataRepositoryImpl
 import com.anioncode.drzewostan.features.domain.GetTreesDataUseCase
 import com.anioncode.drzewostan.features.naviagation.TreesDataNavigator
 import com.anioncode.drzewostan.features.naviagation.TreesDataNavigatorImpl
-import com.anioncode.drzewostan.features.presentation.modules.forestStand.BaseFragment
 import com.anioncode.drzewostan.features.presentation.modules.forestStand.ForestStandFragment
-import com.anioncode.drzewostan.features.presentation.modules.forestStand.ForestStandViewModel
+import com.anioncode.drzewostan.features.presentation.modules.forestStand.view_models.ForestStandViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
